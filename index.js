@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const dotenv = require('dotenv').config()
+const cors = require('cors');
 const mongoose = require('mongoose');
 const userRoute = require('./routes/users')
 const authRoute = require('./routes/auths')
@@ -9,8 +10,11 @@ const categoryRoute = require('./routes/categories')
 const multer = require("multer");
 const path = require("path");
 
+app.use(cors())
+
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
+
 
 const connectDB = async(url) => {
   try{
@@ -45,7 +49,7 @@ app.use('/api/posts', postRoute)
 app.use('/api/categories', categoryRoute) 
 
 
-const port = 5500
-app.listen(port, () => {
-  console.log(`app listening on port ${port}`)
+const PORT = process.env.PORT || 5500
+app.listen(PORT, () => {
+  console.log(`app listening on port ${PORT}`)
 })
