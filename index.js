@@ -13,22 +13,22 @@ const path = require("path");
 // app.use(cors({ origin: '*', credentials: true}))
 app.use(cors())
 app.get('/', (req, res) => {
-    res.set({
-        'Access-Control-Allow-Headers': '*',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST,GET,DELETE,PUT,OPTIONS'
-    });
+//     res.set({
+//         'Access-Control-Allow-Headers': '*',
+//         'Access-Control-Allow-Origin': '*',
+//         'Access-Control-Allow-Methods': 'POST,GET,DELETE,PUT,OPTIONS'
+//     });
 
-    User.find({}, function(err, users){
+//     User.find({}, function(err, users){
         
 
-        if(err)
-        {
-            return res.status(500).send({err});
-        }
-        return res.send(users);
-    });
-});
+//         if(err)
+//         {
+//             return res.status(500).send({err});
+//         }
+//         return res.send(users);
+//     });
+// });
 
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
