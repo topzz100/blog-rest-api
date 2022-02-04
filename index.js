@@ -12,7 +12,7 @@ const path = require("path");
 
 // app.use(cors({ origin: '*', credentials: true}))
 app.use(cors())
-app.get('/', (req, res) => {
+//app.get('/', (req, res) => {
 //     res.set({
 //         'Access-Control-Allow-Headers': '*',
 //         'Access-Control-Allow-Origin': '*',
