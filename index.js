@@ -10,8 +10,8 @@ const categoryRoute = require('./routes/categories')
 const multer = require("multer");
 const path = require("path");
 
-// app.use(cors({ origin: '*', credentials: true}))
-app.use(cors())
+app.use(cors({ origin: '*', credentials: true}))
+// app.use(cors())
 
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
