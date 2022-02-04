@@ -11,7 +11,12 @@ const multer = require("multer");
 const path = require("path");
 
 // app.use(cors({ origin: '*', credentials: true}))
-app.use(cors())
+// app.use(cors())
+const corsOptions = {
+  origin: [ "https://holar-blog-app.herokuapp.com/"],
+  optionsSuccessStatus: 200, // some legacy browsers     (IE11, various SmartTVs) choke on 204
+};
+app.use(cors(corsOptions))
 //app.get('/', (req, res) => {
 //     res.set({
 //         'Access-Control-Allow-Headers': '*',
