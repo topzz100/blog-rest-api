@@ -10,13 +10,31 @@ const categoryRoute = require('./routes/categories')
 const multer = require("multer");
 const path = require("path");
 
-// app.use(cors({ origin: '*', credentials: true}))
-// app.use(cors())
-const corsOptions = {
-  origin: [ "https://holar-blog-app.herokuapp.com/"],
-  optionsSuccessStatus: 200, // some legacy browsers     (IE11, various SmartTVs) choke on 204
-};
-app.use(cors(corsOptions))
+//app.use(cors({ origin: '*', credentials: true,}))
+ app.use(cors())
+//  app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
+// app.use(function(req, res, next) {
+//    res.header("Access-Control-Allow-Origin", "*");
+//    res.header('Access-Control-Allow-Methods', 'DELETE, PUT');
+//    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//    if ('OPTIONS' == req.method) {
+//       res.sendStatus(200);
+//     }
+//     else {
+//       next();
+//     }});
+// const corsOptions = {
+//   origin: *,
+//   optionsSuccessStatus: 200, // some legacy browsers     (IE11, various SmartTVs) choke on 204
+// };
+//app.use(cors(corsOptions))
 //app.get('/', (req, res) => {
 //     res.set({
 //         'Access-Control-Allow-Headers': '*',
@@ -25,7 +43,7 @@ app.use(cors(corsOptions))
 //     });
 
 //     User.find({}, function(err, users){
-        
+
 
 //         if(err)
 //         {
@@ -34,6 +52,16 @@ app.use(cors(corsOptions))
 //         return res.send(users);
 //     });
 // });
+// app.use(function(req, res, next) {
+//    res.header("Access-Control-Allow-Origin", "*");
+//    res.header('Access-Control-Allow-Methods', 'DELETE,GET,POST PUT');
+//    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   //  if ('OPTIONS' == req.method) {
+//   //     res.sendStatus(200);
+//   //   }
+//   //   else {
+//       next();
+//     });
 
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
@@ -43,12 +71,12 @@ const connectDB = async(url) => {
   try{
     await mongoose.connect(url, () => {
       console.log('connected to DB')
-    }); 
-    
+    });
+
   }catch(err){
     console.log(err)
   }
-  
+
 }
 connectDB(process.env.MONGO_URI)
 
@@ -68,8 +96,8 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 
 app.use('/api/auth', authRoute)
 app.use('/api/users', userRoute)
-app.use('/api/posts', postRoute) 
-app.use('/api/categories', categoryRoute) 
+app.use('/api/posts', postRoute)
+app.use('/api/categories', categoryRoute)
 
 
 const PORT = process.env.PORT || 5500
