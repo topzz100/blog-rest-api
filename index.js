@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const dotenv = require('dotenv').config()
+const morgan = require('morgan')
 const cors = require('cors');
 const mongoose = require('mongoose');
 const userRoute = require('./routes/users')
@@ -10,59 +11,9 @@ const categoryRoute = require('./routes/categories')
 const multer = require("multer");
 const path = require("path");
 
-//app.use(cors({ origin: '*', credentials: true,}))
  app.use(cors())
-//  app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   next();
-// });
-// app.use(function(req, res, next) {
-//    res.header("Access-Control-Allow-Origin", "*");
-//    res.header('Access-Control-Allow-Methods', 'DELETE, PUT');
-//    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//    if ('OPTIONS' == req.method) {
-//       res.sendStatus(200);
-//     }
-//     else {
-//       next();
-//     }});
-// const corsOptions = {
-//   origin: *,
-//   optionsSuccessStatus: 200, // some legacy browsers     (IE11, various SmartTVs) choke on 204
-// };
-//app.use(cors(corsOptions))
-//app.get('/', (req, res) => {
-//     res.set({
-//         'Access-Control-Allow-Headers': '*',
-//         'Access-Control-Allow-Origin': '*',
-//         'Access-Control-Allow-Methods': 'POST,GET,DELETE,PUT,OPTIONS'
-//     });
-
-//     User.find({}, function(err, users){
-
-
-//         if(err)
-//         {
-//             return res.status(500).send({err});
-//         }
-//         return res.send(users);
-//     });
-// });
-// app.use(function(req, res, next) {
-//    res.header("Access-Control-Allow-Origin", "*");
-//    res.header('Access-Control-Allow-Methods', 'DELETE,GET,POST PUT');
-//    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   //  if ('OPTIONS' == req.method) {
-//   //     res.sendStatus(200);
-//   //   }
-//   //   else {
-//       next();
-//     });
-
+app.use(morgan('common'))
+// app.use(morgan('tiny')) 
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
 
